@@ -7,7 +7,7 @@ const AuthWithJWT = require('../middlewares/AuthWithJWT');
 router.post('/register', async (req, res) => {
     try {
         const newUserId = await userService.registerUser(req.body);
-        res.status(201).json({ message: 'User registered successfully', userId: newUserId });
+        res.status(200).json({ message: 'User registered successfully', userId: newUserId });
     } catch (e) {
         res.status(400).json({
             'message': 'Error registering user',
