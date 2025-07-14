@@ -13,7 +13,7 @@ async function registerUser(userDetails) {
         throw new Error('User already exists with this email');
     }
     // Validate user data
-    if (!userDetails.first_name || !userDetails.last_name || !userDetails.date_of_birth || !userDetails.mobile || !userDetails.email || !userDetails.password) {
+    if (!userDetails.first_name || !userDetails.last_name || !userDetails.mobile || !userDetails.email || !userDetails.password) {
         throw new Error('Missing required user data');
     }
     // validate password strength
@@ -45,7 +45,7 @@ async function loginUser(email, password) {
 }
 async function updateUser(id, userDetails) {
     // Validate user data
-    if (!userDetails.first_name || !userDetails.last_name || !userDetails.date_of_birth || !userDetails.mobile || !userDetails.email) {
+    if (!userDetails.first_name || !userDetails.last_name || !userDetails.mobile || !userDetails.email) {
         throw new Error('Missing required user data');
     }
     // Update the user
