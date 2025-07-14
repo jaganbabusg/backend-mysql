@@ -19,8 +19,8 @@ async function createUser(userDetails) {
         connection = await pool.getConnection();
         await connection.beginTransaction();
         //Create new user
-        const [result] = await connection.query(`INSERT INTO users (first_name, last_name, date_of_birth, mobile, email, password) VALUES (?, ?, ?, ?, ?, ?)`,
-            [userDetails.first_name, userDetails.last_name, userDetails.date_of_birth, userDetails.mobile, userDetails.email, userDetails.password]);
+        const [result] = await connection.query(`INSERT INTO users (first_name, last_name, mobile, email, password) VALUES (?, ?, ?, ?, ?)`,
+            [userDetails.first_name, userDetails.last_name, userDetails.mobile, userDetails.email, userDetails.password]);
         //get new user ID
         const userId = result.insertId;
         //add addresses
@@ -46,8 +46,8 @@ async function updateUser(id, userDetails) {
         connection = await pool.getConnection();
         await connection.beginTransaction();
         //Update user details
-        await connection.query(`UPDATE users SET first_name = ?, last_name = ?, date_of_birth = ?, mobile = ?, email = ? WHERE id = ?`,
-            [userDetails.first_name, userDetails.last_name, userDetails.date_of_birth, userDetails.mobile, userDetails.email, id]);
+        await connection.query(`UPDATE users SET first_name = ?, last_name = ?, mobile = ?, email = ? WHERE id = ?`,
+            [userDetails.first_name, userDetails.last_name, userDetails.mobile, userDetails.email, id]);
         //update addresses
         await connection.query(`DELETE FROM user_address WHERE user_id = ?`, [id]);
         if (userDetails.addresses.length > 0) {
@@ -70,8 +70,8 @@ async function deleteUser(id) {
     try {
         connection = await pool.getConnection();
         await connection.beginTransaction();
-        await connection.query(`DELETE FROM users WHERE id = ?`, [id]);
         await connection.query(`DELETE FROM user_address WHERE user_id = ?`, [id]);
+        await connection.query(`DELETE FROM users WHERE id = ?`, [id]);
         await connection.commit();
     } catch (e) {
         await connection.rollback();

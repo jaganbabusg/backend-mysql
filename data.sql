@@ -1,10 +1,10 @@
 -- This SQL script is used to populate the database with initial data for a food delivery application.
 use dbmain;
 -- Insert users
-INSERT INTO users (first_name, last_name, date_of_birth, mobile, email, password) VALUES
-('Rahul', 'Sharma', '1990-05-20', '91234567', 'rahul.sharma@example.com', 'pass1234'),
-('Priya', 'Menon', '1988-11-02', '92345678', 'priya.menon@example.com', 'pass1234'),
-('Amit', 'Verma', '1995-07-15', '93456789', 'amit.verma@example.com', 'pass1234');
+INSERT INTO users (first_name, last_name, mobile, email, password) VALUES
+('Rahul', 'Sharma', '91234567', 'rahul.sharma@example.com', 'pass1234'),
+('Priya', 'Menon', '92345678', 'priya.menon@example.com', 'pass1234'),
+('Amit', 'Verma', '93456789', 'amit.verma@example.com', 'pass1234');
 -- Insert user addresses
 INSERT INTO user_address (user_id, unit_no, address_line_1, address_line_2, postal_code) VALUES
 (1, '101A', 'Yishun Ring Road', 'Yishun', '560001'),
